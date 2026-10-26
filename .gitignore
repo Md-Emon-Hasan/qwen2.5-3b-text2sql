@@ -1,0 +1,10 @@
+*.safetensors
+*.safetensors.index.json
+*.bin
+*.gguf
+*.pt
+tokenizer.json
+vocab.json
+merges.txt
+__pycache__/
+.ipynb_checkpoints/

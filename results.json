@@ -1,0 +1,294 @@
+{
+  "base_model": "unsloth/Qwen2.5-3B-Instruct",
+  "dataset": "b-mc2/sql-create-context",
+  "eval_n": 300,
+  "base": {
+    "exact_match": 7.7,
+    "valid_sql": 98.7,
+    "token_f1": 83.1,
+    "mean_chars": 75.0
+  },
+  "step150": {
+    "exact_match": 69.0,
+    "valid_sql": 100.0,
+    "token_f1": 96.6,
+    "mean_chars": 76.0
+  },
+  "tuned": {
+    "exact_match": 74.3,
+    "valid_sql": 100.0,
+    "token_f1": 97.5,
+    "mean_chars": 74.9
+  },
+  "delta_exact_match": 66.6,
+  "delta_token_f1": 14.400000000000006,
+  "per_query": {
+    "both": 22,
+    "fixed": 201,
+    "broke": 1,
+    "neither": 76
+  },
+  "loss_curve": [
+    [
+      10,
+      0.23424363136291504
+    ],
+    [
+      20,
+      0.13325860500335693
+    ],
+    [
+      30,
+      0.1063528299331665
+    ],
+    [
+      40,
+      0.0763877809047699
+    ],
+    [
+      50,
+      0.05598241090774536
+    ],
+    [
+      60,
+      0.10501593351364136
+    ],
+    [
+      70,
+      0.05305781960487366
+    ],
+    [
+      80,
+      0.06563854813575745
+    ],
+    [
+      90,
+      0.07103953361511231
+    ],
+    [
+      100,
+      0.052349436283111575
+    ],
+    [
+      110,
+      0.03953289389610291
+    ],
+    [
+      120,
+      0.05907381772994995
+    ],
+    [
+      130,
+      0.061413896083831784
+    ],
+    [
+      140,
+      0.059711146354675296
+    ],
+    [
+      150,
+      0.07641029357910156
+    ],
+    [
+      160,
+      0.04268796145915985
+    ],
+    [
+      170,
+      0.06105188727378845
+    ],
+    [
+      180,
+      0.0508767306804657
+    ],
+    [
+      190,
+      0.044770249724388124
+    ],
+    [
+      200,
+      0.04051651060581207
+    ],
+    [
+      210,
+      0.049310794472694396
+    ],
+    [
+      220,
+      0.03523029386997223
+    ],
+    [
+      230,
+      0.04869644045829773
+    ],
+    [
+      240,
+      0.04668574929237366
+    ],
+    [
+      250,
+      0.03599181175231934
+    ],
+    [
+      260,
+      0.02646442949771881
+    ],
+    [
+      270,
+      0.04928763508796692
+    ],
+    [
+      280,
+      0.047966471314430235
+    ],
+    [
+      290,
+      0.049540472030639646
+    ],
+    [
+      300,
+      0.08010689020156861
+    ],
+    [
+      310,
+      0.039731934666633606
+    ],
+    [
+      320,
+      0.06424142718315125
+    ],
+    [
+      330,
+      0.05435795187950134
+    ],
+    [
+      340,
+      0.07356575131416321
+    ],
+    [
+      350,
+      0.04421339631080627
+    ],
+    [
+      360,
+      0.05496616959571839
+    ],
+    [
+      370,
+      0.04979080557823181
+    ],
+    [
+      380,
+      0.03385078012943268
+    ],
+    [
+      390,
+      0.04317557215690613
+    ],
+    [
+      400,
+      0.03991703987121582
+    ],
+    [
+      410,
+      0.020589366555213928
+    ],
+    [
+      420,
+      0.030613651871681212
+    ],
+    [
+      430,
+      0.03805358111858368
+    ],
+    [
+      440,
+      0.03770706057548523
+    ],
+    [
+      450,
+      0.052701312303543094
+    ],
+    [
+      460,
+      0.03255281746387482
+    ],
+    [
+      470,
+      0.04228513538837433
+    ],
+    [
+      480,
+      0.03677581250667572
+    ],
+    [
+      490,
+      0.04159895777702331
+    ],
+    [
+      500,
+      0.029874467849731447
+    ]
+  ],
+  "examples": [
+    {
+      "question": "How many Attendances have a Score of 4 – 5? Question 4",
+      "schema": "CREATE TABLE table_name_88 (attendance INTEGER, score VARCHAR)",
+      "gold": "SELECT MAX(attendance) FROM table_name_88 WHERE score = \"4 – 5\"",
+      "base_raw": "SELECT COUNT(attendance) FROM table_name_88 WHERE score = '4 – 5'",
+      "base": "SELECT COUNT(attendance) FROM table_name_88 WHERE score = '4 – 5'",
+      "tuned": "SELECT SUM(attendance) FROM table_name_88 WHERE score = \"4 – 5\"",
+      "base_ok": false,
+      "tuned_ok": false
+    },
+    {
+      "question": "When did woking compete?",
+      "schema": "CREATE TABLE table_name_92 (date VARCHAR, opponent VARCHAR)",
+      "gold": "SELECT date FROM table_name_92 WHERE opponent = \"woking\"",
+      "base_raw": "SELECT date FROM table_name_92 WHERE opponent = 'working'",
+      "base": "SELECT date FROM table_name_92 WHERE opponent = 'working'",
+      "tuned": "SELECT date FROM table_name_92 WHERE opponent = \"working\"",
+      "base_ok": false,
+      "tuned_ok": false
+    },
+    {
+      "question": "What is the local name given to the city of Canberra?",
+      "schema": "CREATE TABLE table_1008653_1 (capital___endonym__ VARCHAR, capital___exonym__ VARCHAR)",
+      "gold": "SELECT capital___endonym__ FROM table_1008653_1 WHERE capital___exonym__ = \"Canberra\"",
+      "base_raw": "SELECT capital___endonym__ FROM table_1008653_1 WHERE capital___exonym__ = 'Canberra'",
+      "base": "SELECT capital___endonym__ FROM table_1008653_1 WHERE capital___exonym__ = 'Canberra'",
+      "tuned": "SELECT capital___endonym__ FROM table_1008653_1 WHERE capital___exonym__ = \"Canberra\"",
+      "base_ok": false,
+      "tuned_ok": true
+    },
+    {
+      "question": "What is the Version before 2001 with a Length of 7:42?",
+      "schema": "CREATE TABLE table_name_64 (version VARCHAR, year VARCHAR, length VARCHAR)",
+      "gold": "SELECT version FROM table_name_64 WHERE year < 2001 AND length = \"7:42\"",
+      "base_raw": "SELECT version FROM table_name_64 WHERE year < '2001' AND length = '7:42' LIMIT 1",
+      "base": "SELECT version FROM table_name_64 WHERE year < '2001' AND length = '7:42' LIMIT 1",
+      "tuned": "SELECT version FROM table_name_64 WHERE year < 2001 AND length = \"7:42\"",
+      "base_ok": false,
+      "tuned_ok": true
+    }
+  ],
+  "publish_gate_min_gain": 5.0,
+  "config": {
+    "method": "LoRA 16-bit via Unsloth",
+    "r": 16,
+    "lora_alpha": 16,
+    "max_seq": 512,
+    "batch": 2,
+    "accum": 4,
+    "steps": 500,
+    "lr": 0.0002,
+    "trainable_params": 29933568,
+    "total_params": 3085938688,
+    "peak_vram_gb": 6.86,
+    "train_minutes": 15.8,
+    "hardware": "Tesla T4",
+    "seed": 3407,
+    "adapter_mb": 119.8,
+    "merged_gb": 6.18
+  }
+}

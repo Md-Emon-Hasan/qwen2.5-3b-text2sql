@@ -1,0 +1,5 @@
+{
+  "chat_template": "qwen-2.5",
+  "system": "You convert questions into a single SQLite query. Reply with the query only: no explanation, no markdown, no commentary.",
+  "user_template": "Schema:\n{context}\n\nQuestion: {question}"
+}
